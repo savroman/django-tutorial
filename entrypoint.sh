@@ -6,7 +6,7 @@ while ! nc -z $POSTGRES_HOST $POSTGRES_PORT; do
 done
 echo "PostgreSQL started"
 
-python manage.py flush --no-input
+#python manage.py flush --no-input
 python manage.py migrate
 
 gunicorn mysite.wsgi:application --bind 0.0.0.0:8000

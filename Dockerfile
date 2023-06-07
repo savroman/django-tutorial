@@ -7,7 +7,7 @@ RUN mkdir -p /home/app
 RUN addgroup -S app && adduser -S app -G app
 
 ENV APP_HOME=/home/app/
-
+RUN mkdir $APP_HOME/staticfiles
 # set work directory
 WORKDIR $APP_HOME
 

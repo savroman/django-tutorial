@@ -2,8 +2,8 @@ services:
   django:
     build: .
     #command: gunicorn mysite.wsgi:application --bind 0.0.0.0:8000
-    #volumes:
-    #  - ./app/:/usr/src/app/
+    volumes:
+      - static_volume:/home/app/staticfiles
     ports:
       - 8000:8000
     depends_on:
@@ -14,6 +14,8 @@ services:
   # https://hub.docker.com/_/postgres
   postgres:
     image: postgres:14.0-alpine
+    ports:
+      - 5555:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
@@ -23,8 +25,11 @@ services:
     build: ./nginx
     ports:
       - 1337:80
+    volumes:
+      - static_volume:/home/app/staticfiles
     depends_on:
       - django
 
 volumes:
   postgres_data:
+  static_volume:
