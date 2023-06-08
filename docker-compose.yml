@@ -1,7 +1,7 @@
 services:
   django:
     build: .
-    name: django
+    container_name: django
     #command: gunicorn mysite.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/staticfiles
@@ -15,7 +15,7 @@ services:
 
   # https://hub.docker.com/_/postgres
   postgres:
-    name: postgres
+    container_name: postgres
     image: postgres:14.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
@@ -25,7 +25,7 @@ services:
       - django
   
   nginx:
-    name: nginx
+    container_name: nginx
     image: nginx
     ports:
       - 80:80
