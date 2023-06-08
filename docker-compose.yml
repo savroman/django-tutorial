@@ -21,8 +21,8 @@ services:
   nginx:
     image: nginx
     ports:
-      - 80:80
-      - 443:443
+      - 1180:80
+      - 1443:443
     volumes:
       - ./templates:/etc/nginx/templates
       - static_volume:/home/app/staticfiles
