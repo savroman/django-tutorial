@@ -18,8 +18,7 @@ services:
   postgres:
     container_name: postgres
     image: postgres:14.0-alpine
-    restart: 
-      - always
+    restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
