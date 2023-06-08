@@ -2,6 +2,7 @@ from django.http import Http404,HttpResponse
 from django.shortcuts import render
 from django.template import loader
 from .models import Question
+from django.core.files.storage import FileSystemStorage
 
 def index(request):
     latest_question_list = Question.objects.order_by("-pub_date")[:5]
@@ -24,3 +25,15 @@ def results(request, question_id):
 
 def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
+
+def image_upload(request):
+    if request.method == "POST" and request.FILES["image_file"]:
+        image_file = request.FILES["image_file"]
+        fs = FileSystemStorage()
+        filename = fs.save(image_file.name, image_file)
+        image_url = fs.url(filename)
+        print(image_url)
+        return render(request, "polls/upload.html", {
+            "image_url": image_url
+        })
+    return render(request, "polls/upload.html")
