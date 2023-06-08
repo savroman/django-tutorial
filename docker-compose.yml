@@ -27,6 +27,8 @@ services:
       - ./templates:/etc/nginx/templates
       - static_volume:/home/app/staticfiles
       - media_volume:/home/app/mediafiles
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/lib/letsencrypt:/var/lib/letsencrypt
     depends_on:
       - django
     env_file:
