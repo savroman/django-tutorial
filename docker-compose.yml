@@ -2,8 +2,7 @@ services:
   django:
     build: .
     container_name: django
-    restart: 
-      - always
+    restart: always
     #command: gunicorn mysite.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/staticfiles
@@ -31,8 +30,7 @@ services:
   nginx:
     container_name: nginx
     image: nginx
-    restart: 
-      - always
+    restart: always
     ports:
       - 80:80
       - 443:443
